@@ -1,0 +1,29 @@
+{
+  "events": "C:\\Projects\\alkhaliya\\data\\benchmarks\\alkhaliya_bitext_events.jsonl",
+  "records": 12000,
+  "repeat": 1,
+  "processed": 12000,
+  "ok": 12000,
+  "errors": 0,
+  "success_rate": 1.0,
+  "queues": {
+    "human_support": 2149,
+    "sales_ops": 1118,
+    "general_inbox": 7308,
+    "finance": 1425
+  },
+  "latency_ms": {
+    "mean": 0.0721542416746767,
+    "p99": 0.12530002277344465,
+    "max": 0.4039999912492931
+  },
+  "memory_mb": {
+    "current": 0.41251,
+    "peak": 0.414862
+  },
+  "elapsed_seconds": 0.9364494000037666,
+  "collapse_check": {
+    "passed": true,
+    "criteria": "errors == 0"
+  }
+}

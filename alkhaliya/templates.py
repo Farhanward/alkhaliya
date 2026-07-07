@@ -1,0 +1,27 @@
+from __future__ import annotations
+
+
+def customer_hive() -> dict:
+    return {
+        "name": "customer_hive",
+        "version": 1,
+        "nodes": [
+            {"id": "classify", "type": "classify", "text": "{{event.text}}", "out": "category"},
+            {
+                "id": "route",
+                "type": "route",
+                "key": "{{category}}",
+                "out": "queue",
+                "routes": {
+                    "support_escalation": "human_support",
+                    "sales_or_order": "sales_ops",
+                    "billing": "finance",
+                    "*": "general_inbox",
+                },
+            },
+            {"id": "reply", "type": "template", "out": "reply", "template": "تم استلام رسالتك وتصنيفها: {{category}}. المسار: {{queue}}."},
+            {"id": "webhook", "type": "webhook", "url": "dry-run://n8n/customer", "payload": {"queue": "{{queue}}", "reply": "{{reply}}"}},
+            {"id": "assert", "type": "assert", "key": "reply"},
+        ],
+    }
+
